@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Central do Trabalho — Baixe o app</title>
+<meta name="description" content="Vagas de emprego, prestadores de serviço e negócios perto de você. Grátis para quem procura trabalho.">
+<meta property="og:title" content="Central do Trabalho">
+<meta property="og:description" content="Vagas de emprego, prestadores de serviço e negócios perto de você. Baixe grátis na Play Store.">
+<meta property="og:image" content="https://projetosales17-cloud.github.io/centraldotrabalho/logo.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#12324F">
+<link rel="icon" href="logo.png">
+<style>
+  :root { --dark:#12324F; --primary:#1E4B72; --teal:#25807e; --mint:#9fe3d6; --accent:#F2A93B; }
+  * { box-sizing:border-box; }
+  html { background:#25807e; }
+  body { margin:0; min-height:100vh; font-family:"Segoe UI",Roboto,Arial,sans-serif; color:#fff;
+         background:linear-gradient(160deg,#1d3c5e 0%,#1b4a66 50%,#25807e 100%);
+         display:flex; justify-content:center; }
+  main { width:100%; max-width:440px; padding:40px 20px 32px; text-align:center; }
+  .logo { width:120px; height:120px; border-radius:50%; background:#fff; padding:6px; box-shadow:0 10px 30px rgba(0,0,0,.25); }
+  h1 { font-size:32px; margin:20px 0 8px; line-height:1.1; }
+  .tag { color:var(--mint); font-size:18px; margin:0 0 28px; line-height:1.35; }
+  .btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:18px 20px;
+         border-radius:16px; background:#fff; color:var(--dark); font-size:20px; font-weight:800; text-decoration:none;
+         box-shadow:0 10px 30px rgba(0,0,0,.25); }
+  .btn:active { transform:scale(.98); }
+  .btn svg { width:28px; height:28px; flex:0 0 28px; }
+  .free { margin:12px 0 30px; font-size:15px; color:#d7f3ee; }
+  .cards { display:grid; gap:12px; text-align:left; }
+  .card { background:rgba(255,255,255,.1); border-radius:16px; padding:16px 18px; display:flex; gap:14px; align-items:flex-start; }
+  .card .ic { font-size:26px; line-height:1; }
+  .card b { display:block; font-size:17px; margin-bottom:3px; }
+  .card span { font-size:14.5px; color:#d7f3ee; line-height:1.35; }
+  .search { margin-top:26px; font-size:14px; color:#d7f3ee; line-height:1.5; }
+  .search b { color:#fff; }
+  footer { margin-top:28px; font-size:12.5px; color:rgba(255,255,255,.65); }
+  footer a { color:rgba(255,255,255,.8); }
+</style>
+</head>
+<body>
+<main>
+  <img class="logo" src="logo.png" alt="Logo do Central do Trabalho">
+  <h1>Central do Trabalho</h1>
+  <p class="tag">Vagas de emprego, prestadores de serviço e negócios perto de você</p>
+
+  <a class="btn" id="play" href="https://play.google.com/store/apps/details?id=br.com.centraldotrabalho.app">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.6 1.8 13.8 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m17.1 8.7-3.3 3.3 3.3 3.3 3.8-2.2c.7-.4.7-1.4 0-1.8z"/><path fill="#4285F4" d="M3.6 1.8c.3-.2.8-.2 1.2 0l12.3 6.9-3.3 3.3z"/><path fill="#EA4335" d="M13.8 12l3.3 3.3-12.3 6.9c-.4.2-.9.2-1.2 0z"/></svg>
+    Baixar na Play Store
+  </a>
+  <p class="free">Grátis para quem procura trabalho · Android</p>
+
+  <div class="cards">
+    <div class="card"><div class="ic">💼</div><div><b>Procura emprego?</b><span>Vagas da sua cidade e da região, com a distância até o trabalho. Candidate-se pelo celular.</span></div></div>
+    <div class="card"><div class="ic">🔧</div><div><b>Precisa de um profissional?</b><span>Eletricista, diarista, pedreiro e muito mais, com avaliações. Converse direto, sem intermediário.</span></div></div>
+    <div class="card"><div class="ic">🏢</div><div><b>Tem empresa ou presta serviço?</b><span>Publique vagas ou monte sua vitrine. O 1º mês é grátis.</span></div></div>
+  </div>
+
+  <p class="search">Se o botão não abrir, entre na <b>Play Store</b> e procure por <b>Central do Trabalho</b>.</p>
+
+  <footer>Central do Trabalho · <a href="mailto:projetosales17@gmail.com">projetosales17@gmail.com</a></footer>
+</main>
+<script>
+  // De onde a pessoa veio (ex.: ?src=instagram) vai junto para a Play Store,
+  // e o Play Console mostra as instalações por origem.
+  try {
+    var src = (new URLSearchParams(location.search).get("src") || "site").replace(/[^a-z0-9_-]/gi, "").slice(0, 30) || "site";
+    var ref = "utm_source=" + src + "&utm_medium=pagina&utm_campaign=lancamento";
+    document.getElementById("play").href =
+      "https://play.google.com/store/apps/details?id=br.com.centraldotrabalho.app&referrer=" + encodeURIComponent(ref);
+  } catch (e) {}
+</script>
+</body>
+</html>
