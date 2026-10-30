@@ -69,6 +69,24 @@
     var ref = "utm_source=" + src + "&utm_medium=pagina&utm_campaign=lancamento";
     document.getElementById("play").href =
       "https://play.google.com/store/apps/details?id=br.com.centraldotrabalho.app&referrer=" + encodeURIComponent(ref);
+
+    // Contador sem dado pessoal: quantos abriram a página e quantos tocaram
+    // no botão, por origem (vai para o Painel Admin do app).
+    var track = function (event) {
+      fetch("https://parseapi.back4app.com/functions/trackLanding", {
+        method: "POST",
+        keepalive: true,
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({
+          _ApplicationId: "NvaeSQBtfiE1jT28MnxrBgUiuoTNkQ3KgNaurZdX",
+          _JavaScriptKey: "uHvr9oSua4SXwEbyxQ2wydf2XnfR6F61na8wzLE8",
+          event: event,
+          src: src
+        })
+      }).catch(function () {});
+    };
+    track("view");
+    document.getElementById("play").addEventListener("click", function () { track("click"); });
   } catch (e) {}
 </script>
 </body>
