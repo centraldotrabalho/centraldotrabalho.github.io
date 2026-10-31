@@ -67,8 +67,14 @@
   try {
     var src = (new URLSearchParams(location.search).get("src") || "site").replace(/[^a-z0-9_-]/gi, "").slice(0, 30) || "site";
     var ref = "utm_source=" + src + "&utm_medium=pagina&utm_campaign=lancamento";
-    document.getElementById("play").href =
-      "https://play.google.com/store/apps/details?id=br.com.centraldotrabalho.app&referrer=" + encodeURIComponent(ref);
+    var playWeb = "https://play.google.com/store/apps/details?id=br.com.centraldotrabalho.app&referrer=" + encodeURIComponent(ref);
+    // No Android, o link "intent" abre o app da Play Store direto, inclusive
+    // de dentro do navegador do Instagram/Facebook (o link https comum às
+    // vezes não abre ali); se não der, o Android cai no link https.
+    var isAndroid = /Android/i.test(navigator.userAgent);
+    var playApp = "intent://details?id=br.com.centraldotrabalho.app&referrer=" + encodeURIComponent(ref) +
+      "#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=" + encodeURIComponent(playWeb) + ";end";
+    document.getElementById("play").href = isAndroid ? playApp : playWeb;
 
     // Contador sem dado pessoal: quantos abriram a página e quantos tocaram
     // no botão, por origem (vai para o Painel Admin do app).
@@ -87,6 +93,16 @@
     };
     track("view");
     document.getElementById("play").addEventListener("click", function () { track("click"); });
+
+    // Quem chega pelo anúncio já tocou em "Baixar": abre a Play Store sozinha
+    // (166 abriram a página e só 1 tocou no botão — 30-31/10). Uma vez por
+    // sessão, para não prender quem volta da Play Store com o "voltar".
+    var autoKey = "ct_auto_play";
+    var alreadyOpened = false;
+    try { alreadyOpened = sessionStorage.getItem(autoKey) === "1"; sessionStorage.setItem(autoKey, "1"); } catch (e) {}
+    if (isAndroid && !alreadyOpened) {
+      setTimeout(function () { location.href = playApp; }, 400);
+    }
   } catch (e) {}
 </script>
 </body>
